@@ -2,13 +2,38 @@ import React from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
-
 const Login = () => {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login Successfully');
+
+    const email = document.getElementById('form2Example11').value;
+    const password = document.getElementById('form2Example22').value;
+
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert('Login successful!');
+        localStorage.setItem('token', data.token);
+        // Navigate to dashboard or any protected route
+        navigate('/dashboard'); // You can change this route
+      } else {
+        alert(data.message || 'Login failed');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred during login');
+    }
   };
 
   return (
@@ -18,17 +43,15 @@ const Login = () => {
           <div className="col-xl-10">
             <div className="card rounded-3 text-black">
               <div className="row g-0">
-             
                 <div className="col-lg-6">
                   <div className="card-body p-md-5 mx-md-4">
-
                     <div className="text-center">
                       <img
                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                         style={{ width: '185px' }}
                         alt="logo"
                       />
-                      <h4 className="mt-1 mb-5 pb-1">Connecting Needs With Kindness -<b>CircleAid Connect</b></h4>
+                      <h4 className="mt-1 mb-5 pb-1">Connecting Needs With Kindness - <b>CircleAid Connect</b></h4>
                     </div>
 
                     <form onSubmit={handleSubmit}>
@@ -42,7 +65,6 @@ const Login = () => {
                           placeholder="Username"
                           required
                         />
-                        <label className="form-label" htmlFor="form2Example11"></label>
                       </div>
 
                       <div className="form-outline mb-4">
@@ -50,10 +72,9 @@ const Login = () => {
                           type="password"
                           id="form2Example22"
                           className="form-control"
-                          placeholder='Password'
+                          placeholder="Password"
                           required
                         />
-                        <label className="form-label" htmlFor="form2Example22"></label>
                       </div>
 
                       <div className="text-center pt-1 mb-5 pb-1">
@@ -68,20 +89,24 @@ const Login = () => {
 
                       <div className="d-flex align-items-center justify-content-center pb-4">
                         <p className="mb-0 me-2">Don't have an account?</p>
-                        <button type="button" className="btn btn-outline-danger" onClick={()=>navigate('/Register')}>Create new </button>
+                        <button
+                          type="button"
+                          className="btn btn-outline-danger"
+                          onClick={() => navigate('/Register')}
+                        >
+                          Create new
+                        </button>
                       </div>
                     </form>
-
                   </div>
                 </div>
 
-              
                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                   <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                    <h4 className="mb-4">A Smarter Way to Give & Recieve</h4>
+                    <h4 className="mb-4">A Smarter Way to Give & Receive</h4>
                     <p className="small mb-3">
-                   CircleAid Connect empowers communities with intelligent tools to donate or request resources. 
-                    Through map-based matching and a gamified reward system, we’re building a future where giving is easy, transparent, and impactful
+                      CircleAid Connect empowers communities with intelligent tools to donate or request resources. 
+                      Through map-based matching and a gamified reward system, we’re building a future where giving is easy, transparent, and impactful
                     </p>
                   </div>
                 </div>

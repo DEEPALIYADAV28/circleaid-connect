@@ -19,9 +19,29 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Registered Successfully:', formData);
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Registration successful!');
+        navigate('/'); // Redirect to login
+      } else {
+        alert(data.message || 'Registration failed');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred during registration');
+    }
   };
 
   return (
@@ -31,7 +51,7 @@ const Register = () => {
           <div className="col-12 col-md-10 col-lg-10">
             <div className="card text-black" style={{ borderRadius: '1rem', height: '100%' }}>
               <div className="row h-100 g-0">
-              
+
                 <div className="col-md-6 d-flex align-items-center">
                   <div className="card-body p-md-5 mx-md-4 w-100">
                     <div className="text-center">
@@ -46,9 +66,7 @@ const Register = () => {
                     </div>
 
                     <form onSubmit={handleSubmit}>
-                      <p>
-                        <b>Create your Account</b>
-                      </p>
+                      <p><b>Create your Account</b></p>
 
                       <div className="form-outline mb-4">
                         <input
@@ -132,6 +150,7 @@ const Register = () => {
                     </p>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
