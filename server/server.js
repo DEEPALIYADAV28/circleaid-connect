@@ -13,6 +13,12 @@ app.use(express.json());
 const authRoutes = require('./routes/auth.routes');
 app.use('/api/auth', authRoutes);
 
+const donationRoutes=require("./routes/donationRoutes");
+const requestRoutes=require("./routes/requestRoutes");
+app.use("/api/donations",donationRoutes);
+app.use("/api/requests",requestRoutes);
+
+
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
