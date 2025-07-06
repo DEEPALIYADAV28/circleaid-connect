@@ -17,6 +17,7 @@ const donationRoutes=require("./routes/donationRoutes");
 const requestRoutes=require("./routes/requestRoutes");
 app.use("/api/donations",donationRoutes);
 app.use("/api/requests",requestRoutes);
+app.use("/uploads", express.static("uploads"));
 
 
 mongoose.connect(process.env.MONGO_URI, {

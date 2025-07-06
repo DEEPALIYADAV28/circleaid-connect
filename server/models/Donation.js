@@ -19,7 +19,10 @@ const donationSchema=new mongoose.Schema({
     createdAt:{
         type:Date,
         default:Date.now
-    }
+    },
+    image: { type: String },
+     address: { type: String }
+
 });
 donationSchema.index({location:"2dsphere"});
 module.exports=mongoose.model("Donation",donationSchema);

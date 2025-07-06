@@ -1,9 +1,11 @@
 const express = require("express");
+const router=express.Router();
+const upload=require("../middlewares/upload");
 const {
   createDonation,
   getDonations,
 } = require("../controllers/donationController");
-const router = express.Router();
-router.post("/", createDonation);
+
+router.post("/", upload.single("image"),createDonation);
 router.get("/", getDonations);
 module.exports = router;
