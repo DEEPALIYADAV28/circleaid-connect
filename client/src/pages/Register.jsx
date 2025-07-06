@@ -34,7 +34,7 @@ const Register = () => {
 
       if (response.ok) {
         alert('Registration successful!');
-        navigate('/'); // Redirect to login
+        navigate('/Login');
       } else {
         alert(data.message || 'Registration failed');
       }
@@ -52,6 +52,7 @@ const Register = () => {
             <div className="card text-black" style={{ borderRadius: '1rem', height: '100%' }}>
               <div className="row h-100 g-0">
 
+                {/* Left Side - Form */}
                 <div className="col-md-6 d-flex align-items-center">
                   <div className="card-body p-md-5 mx-md-4 w-100">
                     <div className="text-center">
@@ -132,7 +133,7 @@ const Register = () => {
                       <button
                         type="button"
                         className="btn btn-outline-primary"
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/Login')}
                       >
                         Login
                       </button>
@@ -140,6 +141,7 @@ const Register = () => {
                   </div>
                 </div>
 
+                {/* Right Side - Info Panel */}
                 <div className="col-md-6 d-flex align-items-center gradient-custom-2 text-white">
                   <div className="px-3 py-4 p-md-5 mx-md-4">
                     <h4 className="mb-4">Be the reason someone smiles today</h4>

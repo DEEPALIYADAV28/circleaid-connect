@@ -1,29 +1,63 @@
-.gradient-custom-2 {
 
-background: #fccb90;
-
-
-background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-
-
-background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  overflow-x: hidden;
 }
+
+
+.gradient-custom-2 {
+  background: #fccb90;
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  color: white;
+}
+
+.gradient-form {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+
+
+.card {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.row.g-0 {
+  height: auto;
+  margin: 0;
+}
+
+
+.card-body {
+  padding: 2rem;
+}
+
 
 @media (min-width: 768px) {
-.gradient-form {
-height: 100vh !important;
-}
+  .gradient-form {
+    height: 100vh !important;
+  }
   .card {
-    height: 100% !important;
+    height: auto !important; 
   }
-
   .row.g-0 {
-    height: 100%;
+    height: auto;
   }
 }
+
 @media (min-width: 769px) {
-.gradient-custom-2 {
-border-top-right-radius: .3rem;
-border-bottom-right-radius: .3rem;
-}
+  .gradient-custom-2 {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
 }

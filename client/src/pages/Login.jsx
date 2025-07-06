@@ -25,8 +25,7 @@ const Login = () => {
       if (res.ok) {
         alert('Login successful!');
         localStorage.setItem('token', data.token);
-        // Navigate to dashboard or any protected route
-        navigate('/dashboard'); // You can change this route
+        navigate('/'); 
       } else {
         alert(data.message || 'Login failed');
       }
@@ -43,15 +42,20 @@ const Login = () => {
           <div className="col-xl-10">
             <div className="card rounded-3 text-black">
               <div className="row g-0">
+
+                {/* Left - Login Form */}
                 <div className="col-lg-6">
                   <div className="card-body p-md-5 mx-md-4">
+
                     <div className="text-center">
                       <img
                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                         style={{ width: '185px' }}
                         alt="logo"
                       />
-                      <h4 className="mt-1 mb-5 pb-1">Connecting Needs With Kindness - <b>CircleAid Connect</b></h4>
+                      <h4 className="mt-1 mb-5 pb-1">
+                        Connecting Needs With Kindness - <b>CircleAid Connect</b>
+                      </h4>
                     </div>
 
                     <form onSubmit={handleSubmit}>
@@ -62,7 +66,7 @@ const Login = () => {
                           type="email"
                           id="form2Example11"
                           className="form-control"
-                          placeholder="Username"
+                          placeholder="Email"
                           required
                         />
                       </div>
@@ -98,15 +102,17 @@ const Login = () => {
                         </button>
                       </div>
                     </form>
+
                   </div>
                 </div>
 
+                {/* Right - Info Panel */}
                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                   <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                     <h4 className="mb-4">A Smarter Way to Give & Receive</h4>
                     <p className="small mb-3">
                       CircleAid Connect empowers communities with intelligent tools to donate or request resources. 
-                      Through map-based matching and a gamified reward system, we’re building a future where giving is easy, transparent, and impactful
+                      Through map-based matching and a gamified reward system, we’re building a future where giving is easy, transparent, and impactful.
                     </p>
                   </div>
                 </div>
