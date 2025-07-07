@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <>
-      {/* Hero Section */}
+  
       <section className="hero">
         <div className="container">
           <h1 className="display-4 fw-bold">Join the Giving Circle</h1>
@@ -39,7 +39,7 @@ function Home() {
         </div>
       </section>
 
-      {/* About Section */}
+ 
       <section className="section-light">
         <div className="container">
           <h2 className="section-title">About CircleAid</h2>
@@ -49,7 +49,7 @@ function Home() {
         </div>
       </section>
 
-      {/* What You Can Share */}
+    
       <section className="section-colored">
         <div className="container">
           <h2 className="section-title text-white">What You Can Share</h2>
@@ -74,7 +74,7 @@ function Home() {
         </div>
       </section>
 
-      {/* How It Works */}
+    
       <section className="how-it-works py-5 bg-light">
         <div className="container text-center">
           <h2 className="mb-4">
@@ -99,7 +99,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section className="contact-section bg-dark py-5">
         <div className="container text-center text-white">
           <h2 className="mb-4">Get in Touch</h2>
