@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -15,9 +15,9 @@ const Login = () => {
       const res = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -25,7 +25,24 @@ const Login = () => {
       if (res.ok) {
         alert('Login successful!');
         localStorage.setItem('token', data.token);
-        navigate('/'); 
+
+       
+        const userRes = await fetch(`http://localhost:5000/api/users/me`, {
+          headers: {
+            Authorization: `Bearer ${data.token}`,
+          },
+        });
+
+        const userData = await userRes.json();
+
+        if (userRes.ok) {
+          localStorage.setItem('circleUser', JSON.stringify(userData)); 
+          setUser(userData); 
+          navigate('/');
+        } else {
+          alert('Failed to load user data');
+        }
+
       } else {
         alert(data.message || 'Login failed');
       }
@@ -43,10 +60,8 @@ const Login = () => {
             <div className="card rounded-3 text-black">
               <div className="row g-0">
 
-                {/* Left - Login Form */}
                 <div className="col-lg-6">
                   <div className="card-body p-md-5 mx-md-4">
-
                     <div className="text-center">
                       <img
                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
@@ -102,11 +117,10 @@ const Login = () => {
                         </button>
                       </div>
                     </form>
-
                   </div>
                 </div>
 
-                {/* Right - Info Panel */}
+               
                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                   <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                     <h4 className="mb-4">A Smarter Way to Give & Receive</h4>
