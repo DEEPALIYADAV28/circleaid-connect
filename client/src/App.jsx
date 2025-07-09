@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import DonationForm from './components/DonationForm';
 import RequestForm from './components/RequestForm';
 import Home from './pages/Home'; 
+import MyDonations from './pages/MyDonations';
 import ContactPage from './pages/ContactPage';
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
         <Route path="/donate" element={<DonationForm />} />
         <Route path="/request" element={<RequestForm />} />
         <Route path="/contact" element={<ContactPage />} />
+        
+        <Route path="/my-donations" element={<MyDonations />} />
       </Routes>
     </>
   );
